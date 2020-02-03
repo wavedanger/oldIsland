@@ -1,5 +1,8 @@
-[api接口文档](http://bl.7yue.pro/dev/index.html)
-
+<details>
+<summary>数据来源</summary>
+* [api接口文档](http://bl.7yue.pro/dev/index.html)
+* appkey：见config.js文件
+</details>
 
 <details>
 <summary>注意</summary>
@@ -12,4 +15,10 @@
 一是设计时可对按钮四周进行留白，二是前端加宽高，padding，以及其它css样式
 #### 4. components组件有共同的属性
 注册一个 behavior，接受一个 Object 类型的参数，由于behavior为多继承，所以要注意属性的相互覆盖。
+</details>
+
+<details>
+<summary>靓仔靓女有事请联系我</summary>
+
+<weibinhong2018@163.com>
 </details>
