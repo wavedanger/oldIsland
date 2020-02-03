@@ -1,8 +1,10 @@
 ### 慕课网-纯正商业级应用-微信小程序开发实战
 <details>
 <summary>数据来源</summary>
-* [api接口文档](http://bl.7yue.pro/dev/index.html)
-* appkey：见config.js文件
+  
+[api接口文档](http://bl.7yue.pro/dev/index.html)
+
+appkey：见config.js文件
 </details>
 
 <details>
