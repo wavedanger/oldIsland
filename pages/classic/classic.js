@@ -1,5 +1,9 @@
-import {classicModel} from "../../models/classic.js"
-import { likeModel } from "../../models/like.js"
+import {
+  classicModel
+} from "../../models/classic.js"
+import {
+  likeModel
+} from "../../models/like.js"
 let classic_model = new classicModel()
 let like_model = new likeModel()
 Page({
@@ -8,41 +12,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classicData:null,
-    lastest:true,
-    first:false
+    classicData: null,
+    lastest: true,
+    first: false,
+    likeStatus: false,
+    likeCount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    classic_model.getLatest((res)=>{
+    classic_model.getLatest((res) => {
       // console.log(res)
       this.setData({
-        classicData:res
+        classicData: res,
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
       })
     })
   },
-  onLike:function(event){
+  onLike: function(event) {
     let behavior = event.detail.behavior
     let artId = this.data.classicData.id
     let category = this.data.classicData.type
     like_model.like(behavior, artId, category)
   },
-  onNext:function(event){
+  onNext: function(event) {
     this._updateClassic("next")
   },
-  onPrev: function (event) {
+  onPrev: function(event) {
     this._updateClassic("previous")
   },
-  _updateClassic(previousOrNext){
+  _updateClassic(previousOrNext) {
     let currentIndex = this.data.classicData.index
-    classic_model.getClassic(currentIndex, previousOrNext,(res) => {
+    classic_model.getClassic(currentIndex, previousOrNext, (res) => {
       this.setData({
         classicData: res,
         first: classic_model.isFirst(res.index),
         lastest: classic_model.isLastest(res.index)
+      })
+      this._getClassicLikeStatus(res.id, res.type)
+    })
+  },
+  _getClassicLikeStatus(id, type) {
+    like_model.getClassicLikeStatus(id, type, (res) => {
+      this.setData({
+        "likeStatus": res.like_status,
+        "likeCount": res.fav_nums
       })
     })
   },
@@ -50,14 +67,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-      
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
