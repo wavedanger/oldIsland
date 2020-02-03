@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "wave-like":"/components/like/index",
+    "wave-movie":"/components/classic/movie/index",
+    "wave-episode": "/components/episode/index",
+    "wave-nav":"/components/nav/index"
+  }
+}
