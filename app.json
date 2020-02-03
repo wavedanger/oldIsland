@@ -8,5 +8,9 @@
     "navigationBarTitleText": "浪中有险",
     "navigationBarTextStyle": "black"
   },
+  "requiredBackgroundModes":[
+    "audio",
+    "location"
+  ],
   "sitemapLocation": "sitemap.json"
 }

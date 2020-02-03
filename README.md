@@ -23,7 +23,12 @@ appkey：见config.js文件
 * 可用固定前缀+唯一标志作为缓存Key。
 * 再次请求资源时，先判断是否有对应缓存，否则再请求接口。
 * 像文章图片文字可以使用缓存，而点赞数这种实时更新的就要实情况而定。
-* 最后，使用缓存会产生更多的业务逻辑，仁智见仁。
+* 最后，使用缓存会产生更多的业务逻辑，仁者见仁。
+#### 6.components不支持hidden？
+实际组件会将hidden当成组件属性处理，所以我们需要将hidden当成属性处理，一样可以支持。
+#### 7.hidden与wx:if使用场景
+* 频繁切换用hidden反之用wx:if，类似于vue的v-if和v-show
+* hidden不会触发组件的detached，但wxif会
 </details>
 
 <details>

@@ -3,6 +3,8 @@
     <wave-episode class="episode" index="{{classicData.index}}" />
     <wave-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" />
   </view>
-  <wave-movie img="{{classicData.image}}" content="{{classicData.content}}" />
+  <wave-movie wx:if="{{classicData.type==100}}" img="{{classicData.image}}" content="{{classicData.content}}" />
+   <wave-music wx:if="{{classicData.type==200}}" img="{{classicData.image}}" content="{{classicData.content}}" src="{{classicData.url}}" title="{{classicData.title}}"/>
+    <wave-essay wx:if="{{classicData.type==300}}" img="{{classicData.image}}" content="{{classicData.content}}" />
   <wave-nav class="nav" bind:left="onNext" bind:right="onPrev" first="{{first}}" lastest="{{lastest}}" title="{{classicData.title}}"/>
 </view>
