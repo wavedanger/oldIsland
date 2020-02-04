@@ -29,6 +29,13 @@ appkey：见config.js文件
 #### 7.hidden与wx:if使用场景
 * 频繁切换用hidden反之用wx:if，类似于vue的v-if和v-show
 * hidden不会触发组件的detached，但wxif会
+#### 8.业务逻辑写在组件还是页面中
+视情况而定，项目型组件可写在组件中，通用型组件写在页面中
+#### 9.外部修改组件样式的方式
+* 属性，当作内联style，较为麻烦
+* slot，外部可设置slot样式
+* hack，需要知道组件内部标签
+* externalClasses，将外部样式当做属性传递，但与组件内同位置样式优先级不确定，但我们可以用!important强制提升
 </details>
 
 <details>

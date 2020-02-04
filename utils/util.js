@@ -28,11 +28,7 @@ class HTTP {
         }
       },
       fail:(err)=>{
-        wx.showToast({
-          title: "请求错误",
-          icon: 'none',
-          duration: 2000
-        })
+        this._error_code("1")
       }
     })
   }

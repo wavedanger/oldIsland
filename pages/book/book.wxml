@@ -1,0 +1,17 @@
+<view class="container">
+   <view class="header">
+     <view class='box'>
+      <image src="/images/icon/search.png" />
+      <text>搜索书籍</text>
+    </view> 
+  </view> 
+   <view class="sub-container">
+    <image class="head-img" src="/images/book/quality.png" />
+    <view class="books-container">
+      <block wx:for="{{books}}" wx:key="1">
+        <wave-book book="{{item}}" class="book" />
+      </block>
+    </view>
+  </view> 
+</view>
+
