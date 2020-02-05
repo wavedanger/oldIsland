@@ -35,7 +35,7 @@ Page({
     book_model.getShortComments(bid)
       .then((res) => {
         this.setData({
-          comments: res
+          comments: res.comments
         })
       })
   },

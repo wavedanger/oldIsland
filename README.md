@@ -36,6 +36,9 @@ appkey：见config.js文件
 * slot，外部可设置slot样式
 * hack，需要知道组件内部标签
 * externalClasses，将外部样式当做属性传递，但与组件内同位置样式优先级不确定，但我们可以用!important强制提升
+#### 10.wxs
+* 小程序内置js，语法类似于es5
+* 可用做过滤器
 </details>
 
 <details>
