@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "wave-tag":"../../components/tag/index"
+    "wave-tag":"../../components/tag/index",
+    "wave-like": "../../components/like/index",
+    "wave-mask": "../../components/mask/index"
   }
 }

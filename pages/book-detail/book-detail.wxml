@@ -7,6 +7,7 @@
   </view>
   <view class="sub-container">
     <text class="headline">短评</text>
+   <text class="shadow" wx:if="{{!comments}}">还没有短评</text>
     <view class="comment-container">
       <block wx:for="{{util.limit(comments,9)}}" wx:key="1">
         <wave-tag class="tag" text="{{item.content}}">
@@ -38,4 +39,29 @@
       </view>
     </view>
   </view>
+</view>
+<view class="post-container" wx:if="{{!posting}}">
+  <view class="post-fake" bind:tap="onFakePost">
+    <text>输入短评</text>
+  </view>
+   <view class="like-container">
+      <wave-like bind:like="onLike" class="like" like="{{likeStatus}}" count="{{likeCount}}" />
+    </view>
+</view>
+<wave-mask wx:if="{{posting}}"/>
+<view wx:if="{{posting}}" class="posting-container">
+  <view class="post-header">
+    <text wx:if="{{comments}}">仅可点击标签+1</text>
+    <text wx:else>暂无短评</text>
+    <text class="cancel" bind:tap="onCancel">取消</text>
+  </view>
+  <view class="comment-container">
+    <block wx:for="{{util.limit(comments, 3)}}" wx:key="item">
+      <wave-tag class="tag" text="{{item.content}}" bind:tapping="onPost">
+          <text class="num" slot="after">{{'+' + item.nums}}</text>
+      </wave-tag>
+    </block>
+  </view>
+  <input focus="{{posting}}" confirm-type="发送" class="post" placeholder='短评最多12个字' bindconfirm="onPost"></input>
+  <!-- <image class="tip" src="/images/book/tip.png"></image> -->
 </view>

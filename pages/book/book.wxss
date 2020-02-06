@@ -23,7 +23,7 @@
   justify-content: space-between;
 }
 
-.books-container book-cmp{
+.books-container wave-book{
   margin-bottom: 30rpx;
 }
 
