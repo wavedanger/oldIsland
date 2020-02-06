@@ -2,13 +2,15 @@ import {
   bookModel
 } from "../../models/book.js"
 let book_model = new bookModel()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    books:null
+    books:null,
+    searching:false
   },
 
   /**
@@ -22,7 +24,16 @@ Page({
         })
       })
   },
-
+  onSearching:function(){
+    this.setData({
+      searching:true
+    })
+  },
+  onCancel: function () {
+    this.setData({
+      searching: false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

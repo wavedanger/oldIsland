@@ -7,7 +7,7 @@
   </view>
   <view class="sub-container">
     <text class="headline">短评</text>
-   <text class="shadow" wx:if="{{!comments}}">还没有短评</text>
+   <text class="shadow" wx:if="{{comments.length==0}}">还没有短评</text>
     <view class="comment-container">
       <block wx:for="{{util.limit(comments,9)}}" wx:key="1">
         <wave-tag class="tag" text="{{item.content}}">
@@ -51,7 +51,7 @@
 <wave-mask wx:if="{{posting}}"/>
 <view wx:if="{{posting}}" class="posting-container">
   <view class="post-header">
-    <text wx:if="{{comments}}">仅可点击标签+1</text>
+    <text wx:if="{{comments.length>0}}">仅可点击标签+1</text>
     <text wx:else>暂无短评</text>
     <text class="cancel" bind:tap="onCancel">取消</text>
   </view>

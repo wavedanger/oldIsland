@@ -23,26 +23,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '',
+    })
     const bid = options.bid
-    book_model.getDetail(bid)
-      .then((res) => {
-        this.setData({
-          book: res
-        })
+    const getDetail = book_model.getDetail(bid)
+    const getLikeStatus = book_model.getLikeStatus(bid)
+    const getShortComments = book_model.getShortComments(bid)
+    Promise.all([getDetail, getLikeStatus, getShortComments])
+    .then((res)=>{
+      this.setData({
+        book:res[0],
+        likeCount: res[1].fav_nums,
+        likeStatus: res[1].like_status,
+        comments: res[2].comments
       })
-    book_model.getLikeStatus(bid)
-      .then((res) => {
-        this.setData({
-          likeCount: res.fav_nums,
-          likeStatus: res.like_status
-        })
-      })
-    book_model.getShortComments(bid)
-      .then((res) => {
-        this.setData({
-          comments: res.comments
-        })
-      })
+      wx.hideLoading()
+    })
+    // book_model.getDetail(bid)
+    //   .then((res) => {
+    //     this.setData({
+    //       book: res
+    //     })
+    //   })
+    // book_model.getLikeStatus(bid)
+    //   .then((res) => {
+    //     this.setData({
+    //       likeCount: res.fav_nums,
+    //       likeStatus: res.like_status
+    //     })
+    //   })
+    // book_model.getShortComments(bid)
+    //   .then((res) => {
+    //     this.setData({
+    //       comments: res.comments
+    //     })
+    //   })
   },
   onLike: function(event) {
     let behavior = event.detail.behavior

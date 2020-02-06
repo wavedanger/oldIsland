@@ -37,6 +37,17 @@ class bookModel extends HTTP{
       }
     })
   }
+  searchBook({ q, start = 0, count = 20, summary = 1 }) {
+    return this.request({
+      url: "/book/search",
+      data: {
+        start: start,
+        count: count,
+        summary: summary,
+        q: q
+      }
+    })
+  }
 }
 export{
   bookModel

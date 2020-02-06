@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wave-tag":"../tag/index",
+    "wave-book":"../book/index"
+  }
+}

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "wave-book":"/components/book/index"
+    "wave-book":"/components/book/index",
+    "wave-search": "/components/search/index"
   }
 }

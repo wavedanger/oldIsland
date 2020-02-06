@@ -1,6 +1,6 @@
-<view class="container">
+<view class="container" wx:if="{{!searching}}">
    <view class="header">
-     <view class='box'>
+     <view class='box' bindtap="onSearching">
       <image src="/images/icon/search.png" />
       <text>搜索书籍</text>
     </view> 
@@ -14,4 +14,4 @@
     </view>
   </view> 
 </view>
-
+<wave-search wx:if="{{searching}}" bind:cancel="onCancel"/>
