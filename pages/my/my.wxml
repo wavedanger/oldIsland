@@ -1,2 +1,34 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="container">
+  <image src="/images/my/my@bg.png" class="bg"></image>
+  <view class="avatar-container avatar-position" wx:if="{{!hasUserInfo}}">
+    <wave-img-button open-type="getUserInfo" bind:getuserinfo="onGetUserInfo">
+      <image slot="img" src="/images/my/my.png" class="avatar" />
+    </wave-img-button>
+  </view>
+  <view class="avatar-container avatar-position" wx:if="{{hasUserInfo}}">
+    <image src="{{userInfo.avatarUrl}}" class="avatar"/>
+    <text>{{userInfo.nickName}}</text>
+    <!-- <view class="avatar"><open-data type="userAvatarUrl"></open-data></view>
+    <view><open-data type="userNickName"></open-data></view> -->
+  </view>
+  <view class="about-container">
+    <view bind:tap="onJumpToAbout" class="about-us">
+      <image src="/images/my/about.png" />
+      <text class="description">关于我们</text>
+    </view>
+    <view class="about-us">
+      <text class="book-num">{{myBooksCount}}</text>
+      <text class="description">喜欢的书</text>
+    </view>
+  </view>
+  <view class="like-container">
+    <image class=".headline" src="/images/my/like.png" />
+    <view class="preview-container">
+      <block wx:for="{{classics}}" wx:key="1">
+        <wave-preview bind:tap="onPreviewTap" class="preview" classic="{{item}}" />
+      </block>
+    </view>
+  </view>
+</view>
+
+<image bind:tap="onStudy" class="study" src="/images/my/study.png"></image>

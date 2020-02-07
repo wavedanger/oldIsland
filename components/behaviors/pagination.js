@@ -5,7 +5,8 @@ let paginationBev = Behavior({
   data: {
     dataArray: [],
     total:null,
-    noResult:false
+    noResult:false,
+    loading:false
   },
 
   methods: {
@@ -41,7 +42,21 @@ let paginationBev = Behavior({
       this.setData({
         dataArray: [],
         total:null,
-        noResult:false
+        noResult:false,
+        loading:false
+      })
+    },
+    isLocked() {
+      return this.data.loading ? true : false
+    },
+    locked() {
+      this.setData({
+        loading: true
+      })
+    },
+    unlocked() {
+      this.setData({
+        loading: false
       })
     }
   }

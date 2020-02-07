@@ -11,5 +11,5 @@
   <wave-movie wx:if="{{classicData.type==100}}" img="{{classicData.image}}" content="{{classicData.content}}" />
   <wave-music wx:if="{{classicData.type==200}}" img="{{classicData.image}}" content="{{classicData.content}}" src="{{classicData.url}}" title="{{classicData.title}}" />
   <wave-essay wx:if="{{classicData.type==300}}" img="{{classicData.image}}" content="{{classicData.content}}" />
-  <wave-nav class="nav" bind:left="onNext" bind:right="onPrev" first="{{first}}" lastest="{{lastest}}" title="{{classicData.title}}" />
+  <!-- <wave-nav class="nav" bind:left="onNext" bind:right="onPrev" first="{{first}}" lastest="{{lastest}}" title="{{classicData.title}}" /> -->
 </view>

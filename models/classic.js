@@ -13,6 +13,21 @@ class classicModel extends HTTP {
       }
     })
   }
+  getById(cid, type, success) {
+    let params = {
+      url: '/classic/' + type + '/' + cid,
+      success: success
+    }
+    this.request(params)
+  }
+  getMyFavor(callback){
+    this.request({
+      url:"/classic/favor",
+      success:(res)=>{
+        callback(res)
+      }
+    })
+  }
   getClassic(index, PreviousOrNext, callback) {
     let key = PreviousOrNext == 'next' ? this._getClassicKey(index + 1) : this._getClassicKey(index-1)
     let classic=wx.getStorageSync(key)

@@ -5,6 +5,7 @@
     "wave-music": "/components/classic/music/index",
     "wave-essay": "/components/classic/essay/index",
     "wave-episode": "/components/episode/index",
-    "wave-nav":"/components/nav/index"
+    "wave-nav":"/components/nav/index",
+    "wave-img-button":"/components/img-button/index"
   }
 }

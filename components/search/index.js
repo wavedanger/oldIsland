@@ -36,8 +36,8 @@ Component({
     hotKeys: [],
     searching: false,
     q: '',
-    loading: false,
     loadingCenter:false,
+    // loading: false,
     // hasmore: false,
     // total: null,
     // dataArray: []
@@ -97,34 +97,21 @@ Component({
         return
       }
       // 保证每次只请求一次，判断请求是否完成
-      if (this._isLocked()) {
+      if (this.isLocked()) {
         return
       }
       if(this.hasMore()){
-       this._locked()
+       this.locked()
         book_model.searchBook({
           q: this.data.q,
           start: this.getCurrentStart()
         }).then((res) => {
           this.setMoreData(res.books)
-         this._unlocked()
+         this.unlocked()
         },()=>{
-          this._unlocked()
+          this.unlocked()
         })
       }
-    },
-    _isLocked(){
-      return this.data.loading?true:false
-    },
-    _locked(){
-      this.setData({
-        loading:true
-      })
-    },
-    _unlocked() {
-      this.setData({
-        loading: false
-      })
     },
     _showLoadingCenter(){
       this.setData({

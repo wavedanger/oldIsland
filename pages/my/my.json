@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "wave-img-button":"../../components/img-button/index",
+    "wave-preview": "../../components/preview/index"
+  }
 }
