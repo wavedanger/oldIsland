@@ -14,4 +14,4 @@
     </view>
   </view> 
 </view>
-<wave-search wx:if="{{searching}}" bind:cancel="onCancel"/>
+<wave-search more="{{more}}" wx:if="{{searching}}" bind:cancel="onCancel"/>

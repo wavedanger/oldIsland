@@ -1,6 +1,7 @@
 import {
   bookModel
 } from "../../models/book.js"
+let util=require("../../utils/random.js")
 let book_model = new bookModel()
 
 Page({
@@ -10,7 +11,8 @@ Page({
    */
   data: {
     books:null,
-    searching:false
+    searching:false,
+    more:''
   },
 
   /**
@@ -73,7 +75,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.setData({
+      more:util.random(16)
+    })
   },
 
   /**

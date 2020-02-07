@@ -11,7 +11,19 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    more: {
+      type: String,
+      observer: function(n) {
+        this._load_more()
+      }
+    }
+  },
+  // observers:{
+  //   'more':function(more){
+  // this._load_more()
+  //   }
+  // },
 
   /**
    * 组件的初始数据
@@ -22,6 +34,8 @@ Component({
     searching: false,
     dataArray: [],
     q: '',
+    loading: false,
+    hasmore: true
   },
 
   attached: function() {
@@ -61,11 +75,49 @@ Component({
       book_model.searchBook({
         q: search
       }).then((res) => {
-        console.log(res.books)
+        // console.log(res.books)
         this.setData({
           dataArray: res.books
         })
         keyword_model.addToHistory(search)
+        this.setData({
+          historyKeys: keyword_model.getHistoryTag()
+        })
+      })
+    },
+    _load_more: function() {
+      if (this.data.dataArray.length == 0) {
+        return
+      }
+      if (!this.data.hasmore) {
+        return
+      }
+      if (this.data.loading) {
+        return
+      }
+      this.setData({
+        loading: true
+      })
+      let length = this.data.dataArray.length
+      book_model.searchBook({
+        q: this.data.q,
+        start: length
+      }).then((res) => {
+        if (length >= res.total) {
+          // console.log("nomore")
+          this.setData({
+            hasmore: false,
+            loading: false
+          })
+        } else {
+          // console.log("more")
+          let moreDataArray = this.data.dataArray.concat(res.books)
+          this.setData({
+            dataArray: moreDataArray,
+            hasmore: true,
+            loading: false
+          })
+        }
       })
     }
 
