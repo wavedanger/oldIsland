@@ -6,22 +6,25 @@ import {
 } from '../../models/book.js'
 let keyword_model = new KeywordModel()
 let book_model = new bookModel()
-
+import {
+  paginationBev
+} from '../behaviors/pagination.js'
 Component({
   /**
    * 组件的属性列表
    */
+  behaviors: [paginationBev],
   properties: {
     more: {
       type: String,
       observer: function(n) {
-        this._load_more()
+        this.loadMore()
       }
     }
   },
   // observers:{
   //   'more':function(more){
-  // this._load_more()
+  // this.loadMore()
   //   }
   // },
 
@@ -32,10 +35,12 @@ Component({
     historyKeys: [],
     hotKeys: [],
     searching: false,
-    dataArray: [],
     q: '',
     loading: false,
-    hasmore: true
+    loadingCenter:false,
+    // hasmore: false,
+    // total: null,
+    // dataArray: []
   },
 
   attached: function() {
@@ -60,6 +65,7 @@ Component({
     },
 
     onDelete: function(event) {
+      this.initPagination()
       this.setData({
         q: '',
         searching: false
@@ -67,6 +73,8 @@ Component({
     },
 
     onConfirm: function(event) {
+      this.initPagination()
+      this._showLoadingCenter()
       let search = event.detail.value || event.detail.text
       this.setData({
         q: search,
@@ -75,52 +83,94 @@ Component({
       book_model.searchBook({
         q: search
       }).then((res) => {
-        // console.log(res.books)
-        this.setData({
-          dataArray: res.books
-        })
+        this.setMoreData(res.books)
+        this.setTotal(res.total)
         keyword_model.addToHistory(search)
         this.setData({
           historyKeys: keyword_model.getHistoryTag()
         })
+        this._hideLoadingCenter()
       })
     },
-    _load_more: function() {
-      if (this.data.dataArray.length == 0) {
+    loadMore: function() {
+      if (!this.data.q) {
         return
       }
-      if (!this.data.hasmore) {
+      // 保证每次只请求一次，判断请求是否完成
+      if (this._isLocked()) {
         return
       }
-      if (this.data.loading) {
-        return
+      if(this.hasMore()){
+       this._locked()
+        book_model.searchBook({
+          q: this.data.q,
+          start: this.getCurrentStart()
+        }).then((res) => {
+          this.setMoreData(res.books)
+         this._unlocked()
+        },()=>{
+          this._unlocked()
+        })
       }
+    },
+    _isLocked(){
+      return this.data.loading?true:false
+    },
+    _locked(){
       this.setData({
-        loading: true
+        loading:true
       })
-      let length = this.data.dataArray.length
-      book_model.searchBook({
-        q: this.data.q,
-        start: length
-      }).then((res) => {
-        if (length >= res.total) {
-          // console.log("nomore")
-          this.setData({
-            hasmore: false,
-            loading: false
-          })
-        } else {
-          // console.log("more")
-          let moreDataArray = this.data.dataArray.concat(res.books)
-          this.setData({
-            dataArray: moreDataArray,
-            hasmore: true,
-            loading: false
-          })
-        }
+    },
+    _unlocked() {
+      this.setData({
+        loading: false
       })
-    }
-
-
+    },
+    _showLoadingCenter(){
+      this.setData({
+        loadingCenter:true
+      })
+    },
+    _hideLoadingCenter() {
+      this.setData({
+        loadingCenter: false
+      })
+    },
+    // loadMore: function() {
+    //   if (this.data.dataArray.length == 0) {
+    //     return
+    //   }
+    //   if (!this.data.hasmore) {
+    //     return
+    //   }
+    //   if (this.data.loading) {
+    //     return
+    //   }
+    //   this.setData({
+    //     loading: true
+    //   })
+    //   let length = this.data.dataArray.length
+    //   let total = this.data.total
+    //   if (length >= total) {
+    //     // console.log("nomore")
+    //     this.setData({
+    //       hasmore: false,
+    //       loading: false
+    //     })
+    //   } else {
+    //     book_model.searchBook({
+    //       q: this.data.q,
+    //       start: length
+    //     }).then((res) => {
+    //       // console.log("more")
+    //       let moreDataArray = this.data.dataArray.concat(res.books)
+    //       this.setData({
+    //         dataArray: moreDataArray,
+    //         hasmore: true,
+    //         loading: false
+    //       })
+    //     })
+    //   }
+    // }
   }
 })

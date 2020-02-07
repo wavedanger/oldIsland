@@ -39,6 +39,8 @@ appkey：见config.js文件
 #### 10.wxs
 * 小程序内置js，语法类似于es5
 * 可用做过滤器
+#### 11.setData与直接赋值的区别
+* 需要与wxml交互时用this.setData({key:value})，不需要时可用this.data.key=value
 </details>
 
 <details>

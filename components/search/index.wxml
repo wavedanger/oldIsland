@@ -36,4 +36,7 @@
       <wave-book book="{{item}}" class="book" />
     </block>
   </view>
+  <wave-loading wx:if="{{loadingCenter}}" class="loading-center"/>
+  <wave-loading wx:if="{{loading}}" class="loading"/>
+  <text class="empty-tip" wx:if="{{noResult}}">没有搜索到书籍</text>
 </view>

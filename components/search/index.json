@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "wave-tag":"../tag/index",
-    "wave-book":"../book/index"
+    "wave-book":"../book/index",
+    "wave-loading": "../loading/index"
   }
 }

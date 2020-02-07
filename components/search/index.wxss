@@ -38,7 +38,7 @@
   /* margin-left: */
 }
 
-.books-container book-cmp {
+.books-container wave-book {
   margin-bottom: 25rpx;
 }
 
