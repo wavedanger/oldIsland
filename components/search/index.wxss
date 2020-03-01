@@ -144,6 +144,8 @@
   /* width:100%; */
   width: 500rpx;
   font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .test {

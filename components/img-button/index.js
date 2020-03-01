@@ -9,7 +9,7 @@ Component({
     openType: {
       type: String
     },
-    bindgetuserinfo: {
+    plain: {
       type: String
     }
   },
