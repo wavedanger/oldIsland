@@ -1,4 +1,4 @@
-<view catch:tap="onTap" class="container">
+<view bind:tap="onTap" class="container">
   <view class="head">
     <wave-tag text="{{typeText}}" tag-class="tag" />
     <wave-like class="like" read-only="{{true}}" like="{{true}}" count="{{classic.fav_nums}}" />

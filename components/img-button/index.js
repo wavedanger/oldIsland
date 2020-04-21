@@ -26,7 +26,7 @@ Component({
    */
   methods: {
     onGetUserInfo(event) {
-      this.triggerEvent('getuserinfo', event.detail, {})
+      this.triggerEvent('getuserinfo', event.detail)
     }
   }
 })
